@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Guía educativa de Fabio para entender cómo puede empezar a invertir un menor con la orientación de un adulto.">
+  <title>Guía de Fabio para invertir desde joven</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface-raised: #171511;
+      --surface-hover: #211b10;
+      --gold: #ffd700;
+      --bitcoin: #f7931a;
+      --text: #f5f5f5;
+      --muted: #b6b2a9;
+      --soft: #d7d0c1;
+      --line: rgba(255, 215, 0, .2);
+      --line-strong: rgba(247, 147, 26, .38);
+      --green: #a7d98b;
+      --red: #ff8d8d;
+      --font-body: "Segoe UI", "Helvetica Neue", sans-serif;
+      --font-display: "Segoe UI", "Helvetica Neue", sans-serif;
+      --font-code: "Cascadia Code", Consolas, monospace;
+      --content-width: 1080px;
+      --reading-progress: 0%;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% -12%, rgba(247, 147, 26, .105), transparent 38rem),
+        radial-gradient(ellipse at 100% 44%, rgba(255, 215, 0, .045), transparent 30rem),
+        var(--bg);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    .reading-progress-track {
+      position: fixed;
+      z-index: 20;
+      inset: 0 0 auto;
+      height: 3px;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .reading-progress-bar {
+      width: var(--reading-progress);
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 0 12px rgba(247, 147, 26, .5);
+      transition: width .12s linear;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 2;
+      border-bottom: 1px solid rgba(255, 215, 0, .15);
+      background: rgba(10, 10, 10, .72);
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner,
+    main,
+    .site-footer-inner {
+      width: min(100% - 40px, var(--content-width));
+      margin-inline: auto;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-family: var(--font-code);
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 1px solid rgba(247, 147, 26, .5);
+      border-radius: 12px;
+      color: var(--gold);
+      background: rgba(247, 147, 26, .1);
+      box-shadow: 0 0 20px rgba(247, 147, 26, .1);
+      font-size: .95rem;
+    }
+
+    .brand-name { color: var(--muted); font-weight: 500; }
+
+    .header-note {
+      color: var(--muted);
+      font-family: var(--font-code);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      position: relative;
+      padding: clamp(72px, 11vw, 128px) 0 clamp(58px, 8vw, 92px);
+      text-align: center;
+    }
+
+    .hero::after {
+      position: absolute;
+      right: 12%;
+      bottom: 0;
+      left: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+      content: "";
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 20px;
+      color: var(--gold);
+      font-family: var(--font-code);
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      width: 23px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+      opacity: .7;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0 auto;
+      color: transparent;
+      background: linear-gradient(108deg, var(--gold) 12%, var(--bitcoin) 92%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7.4vw, 5.2rem);
+      font-weight: 800;
+      letter-spacing: -.065em;
+      line-height: 1.04;
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 17px;
+      border: 1px solid var(--bitcoin);
+      border-radius: 10px;
+      color: #0a0a0a;
+      background: linear-gradient(115deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 5px 20px rgba(247, 147, 26, .15);
+      cursor: pointer;
+      font-size: .84rem;
+      font-weight: 750;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+      box-shadow: 0 8px 26px rgba(255, 215, 0, .24);
+    }
+
+    .button-secondary {
+      border-color: rgba(255, 215, 0, .32);
+      color: var(--gold);
+      background: rgba(255, 215, 0, .06);
+      box-shadow: none;
+    }
+
+    .button-secondary:hover {
+      color: #0a0a0a;
+      background: linear-gradient(115deg, var(--gold), var(--bitcoin));
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 25px;
+    }
+
+    .meta-chip {
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 215, 0, .16);
+      border-radius: 999px;
+      color: #d7cfbb;
+      background: rgba(17, 17, 17, .78);
+      font-family: var(--font-code);
+      font-size: .66rem;
+    }
+
+    .meta-chip strong { color: var(--gold); font-weight: 600; }
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      align-items: start;
+      gap: clamp(28px, 5vw, 58px);
+      padding: 52px 0 80px;
+    }
+
+    .article-content {
+      display: grid;
+      min-width: 0;
+      gap: 24px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 26px;
+      padding: 20px 17px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(17, 17, 17, .88);
+      box-shadow: 0 0 26px rgba(247, 147, 26, .04);
+    }
+
+    .toc h2 {
+      margin: 0 0 14px;
+      color: var(--gold);
+      font-family: var(--font-code);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .toc ol {
+      display: grid;
+      gap: 5px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      counter-reset: toc;
+    }
+
+    .toc a {
+      display: block;
+      padding: 8px 9px;
+      border-radius: 7px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.4;
+      text-decoration: none;
+      transition: color .18s ease, background .18s ease;
+    }
+
+    .toc a:hover {
+      color: var(--gold);
+      background: rgba(255, 215, 0, .06);
+    }
+
+    .guide-card {
+      position: relative;
+      min-width: 0;
+      padding: clamp(22px, 4vw, 34px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: linear-gradient(145deg, rgba(20, 19, 16, .97), rgba(17, 17, 17, .98));
+      box-shadow: 0 18px 55px rgba(0, 0, 0, .25), 0 0 26px rgba(247, 147, 26, .035);
+    }
+
+    .guide-card::before {
+      position: absolute;
+      top: 0;
+      left: 8%;
+      width: 84%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(247, 147, 26, .62), transparent);
+      content: "";
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 11px;
+      color: var(--bitcoin);
+      font-family: var(--font-code);
+      font-size: .66rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .guide-card h2 {
+      margin: 0;
+      color: #f8f2e5;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      font-weight: 760;
+      letter-spacing: -.04em;
+      line-height: 1.2;
+    }
+
+    .guide-card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.8;
+    }
+
+    .guide-card p strong { color: var(--text); }
+
+    .highlight-box {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border: 1px solid rgba(247, 147, 26, .3);
+      border-left: 3px solid var(--bitcoin);
+      border-radius: 10px;
+      color: #e8dfcb;
+      background: rgba(247, 147, 26, .07);
+      font-size: .87rem;
+      line-height: 1.7;
+    }
+
+    .highlight-box strong { color: var(--gold); }
+
+    .note-box {
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 1px solid rgba(255, 215, 0, .2);
+      border-radius: 10px;
+      color: #c9c1b0;
+      background: rgba(255, 215, 0, .035);
+      font-size: .82rem;
+      line-height: 1.7;
+    }
+
+    .note-box strong { color: #f0d978; }
+
+    .step-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 22px 0 0;
+      list-style: none;
+      counter-reset: steps;
+    }
+
+    .step-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      align-items: start;
+      gap: 14px;
+      padding: 15px;
+      border: 1px solid rgba(255, 215, 0, .12);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .018);
+      counter-increment: steps;
+    }
+
+    .step-number {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid rgba(247, 147, 26, .38);
+      border-radius: 11px;
+      color: #0a0a0a;
+      background: linear-gradient(135deg, var(--gold), var(--bitcoin));
+      font-family: var(--font-code);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .step-copy h3 {
+      margin: 2px 0 0;
+      color: #f2ead8;
+      font-size: .96rem;
+    }
+
+    .step-copy p {
+      margin-top: 6px;
+      font-size: .84rem;
+      line-height: 1.7;
+    }
+
+    .table-wrap {
+      width: 100%;
+      margin-top: 20px;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 215, 0, .16);
+      border-radius: 11px;
+      scrollbar-color: var(--bitcoin) #171511;
+    }
+
+    .comparison-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      background: rgba(8, 8, 8, .36);
+      text-align: left;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 14px 15px;
+      border-bottom: 1px solid rgba(255, 215, 0, .12);
+      vertical-align: top;
+      font-size: .8rem;
+      line-height: 1.6;
+    }
+
+    .comparison-table th {
+      color: #f8d96a;
+      background: rgba(255, 215, 0, .055);
+      font-size: .73rem;
+      letter-spacing: .02em;
+    }
+
+    .comparison-table td { color: var(--muted); }
+    .comparison-table td:first-child { color: #f0e8d6; font-weight: 700; }
+    .comparison-table tr:last-child td { border-bottom: 0; }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+      padding: 0;
+      margin: 22px 0 0;
+      list-style: none;
+    }
+
+    .tip-item {
+      min-height: 116px;
+      padding: 16px;
+      border: 1px solid rgba(255, 215, 0, .14);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .018);
+    }
+
+    .tip-icon {
+      display: inline-grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      margin-bottom: 9px;
+      border-radius: 9px;
+      color: #111;
+      background: linear-gradient(135deg, var(--gold), var(--bitcoin));
+      font-size: .8rem;
+      font-weight: 900;
+    }
+
+    .tip-item h3 {
+      margin: 0;
+      color: #f1e8d5;
+      font-size: .88rem;
+    }
+
+    .tip-item p {
+      margin-top: 7px;
+      font-size: .79rem;
+      line-height: 1.65;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 21px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 0, .17);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .018);
+      transition: border-color .2s ease, background .2s ease;
+    }
+
+    .faq-item[open] {
+      border-color: rgba(247, 147, 26, .42);
+      background: rgba(247, 147, 26, .035);
+    }
+
+    .faq-item summary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 17px 18px;
+      color: #f1e8d5;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 700;
+      line-height: 1.5;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      flex: 0 0 auto;
+      color: var(--gold);
+      content: "+";
+      font-family: var(--font-code);
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .faq-item[open] summary::after { content: "−"; }
+
+    .faq-answer {
+      padding: 0 18px 17px;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.75;
+    }
+
+    .faq-answer p { margin: 0; }
+    .faq-answer strong { color: var(--text); }
+
+    .sources {
+      display: grid;
+      gap: 9px;
+      margin: 18px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: .81rem;
+      line-height: 1.6;
+    }
+
+    .sources a {
+      color: #e6c45c;
+      text-decoration-color: rgba(255, 215, 0, .42);
+      text-underline-offset: 3px;
+    }
+
+    .disclaimer {
+      margin-top: 20px;
+      padding-top: 17px;
+      border-top: 1px solid rgba(255, 215, 0, .15);
+      color: #8f8b82;
+      font-size: .76rem;
+      line-height: 1.7;
+    }
+
+    .site-footer {
+      border-top: 1px solid rgba(255, 215, 0, .16);
+      background: rgba(17, 17, 17, .6);
+    }
+
+    .site-footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-block: 22px;
+      color: #9c978c;
+      font-size: .75rem;
+      line-height: 1.6;
+    }
+
+    .site-footer strong { color: #e3c455; }
+
+    .js-ready .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .js-ready .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 850px) {
+      .page-layout { grid-template-columns: minmax(0, 1fr); }
+      .toc {
+        position: static;
+        grid-row: 1;
+        padding: 16px;
+      }
+      .toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .article-content { grid-row: 2; }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner,
+      main,
+      .site-footer-inner { width: min(100% - 28px, var(--content-width)); }
+      .header-inner { min-height: 64px; }
+      .header-note { font-size: .58rem; }
+      .hero { padding: 68px 0 58px; }
+      .eyebrow { font-size: .61rem; }
+      .hero-copy { margin-top: 17px; }
+      .hero-actions { gap: 9px; }
+      .button { min-height: 44px; padding: 10px 13px; font-size: .78rem; }
+      .page-layout { gap: 22px; padding: 30px 0 56px; }
+      .article-content { gap: 16px; }
+      .guide-card { padding: 21px 17px; border-radius: 14px; }
+      .toc ol { grid-template-columns: 1fr; }
+      .toc a { padding-block: 7px; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .tip-item { min-height: 0; }
+      .step-item { grid-template-columns: 36px minmax(0, 1fr); gap: 11px; padding: 13px; }
+      .step-number { width: 34px; height: 34px; }
+      .faq-item summary { padding: 15px; font-size: .84rem; }
+      .faq-answer { padding: 0 15px 15px; }
+      .site-footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @media print {
+      :root { color-scheme: light; }
+      body { color: #111; background: #fff; }
+      .reading-progress-track,
+      .hero-actions,
+      .toc { display: none !important; }
+      .hero { padding: 28px 0; }
+      h1 { color: #8a5c00; background: none; }
+      .page-layout { display: block; padding: 20px 0; }
+      .article-content { gap: 14px; }
+      .guide-card { break-inside: avoid; color: #111; background: #fff; box-shadow: none; }
+      .guide-card h2,
+      .step-copy h3,
+      .tip-item h3,
+      .faq-item summary,
+      .comparison-table td:first-child { color: #111; }
+      .guide-card p,
+      .step-copy p,
+      .tip-item p,
+      .faq-answer,
+      .comparison-table td { color: #333; }
+      .faq-answer[hidden] { display: block !important; }
+      .faq-item:not([open]) .faq-answer { display: block; }
+      .site-footer { background: #fff; }
+      .site-footer-inner { color: #333; }
+    }
+
+    :root {
+      --bg: #050505;
+      --surface: #101010;
+      --surface-raised: #141414;
+      --surface-hover: #1b200b;
+      --gold: #bfff00;
+      --bitcoin: #00ff41;
+      --text: #f0f0f0;
+      --muted: #b4b8af;
+      --soft: #d3dcc8;
+      --line: rgba(191, 255, 0, .22);
+      --line-strong: rgba(0, 255, 65, .42);
+      --green: #bfff00;
+      --red: #ff8585;
+      --font-body: "Segoe UI", "Helvetica Neue", sans-serif;
+      --font-display: "Segoe UI", "Helvetica Neue", sans-serif;
+      --font-code: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 50% -12%, rgba(0, 255, 65, .075), transparent 38rem),
+        radial-gradient(ellipse at 100% 44%, rgba(191, 255, 0, .035), transparent 30rem),
+        linear-gradient(rgba(191, 255, 0, .022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(191, 255, 0, .022) 1px, transparent 1px);
+      background-size: auto, auto, 42px 42px, 42px 42px;
+      background-attachment: fixed;
+    }
+
+    .site-header {
+      border-bottom-color: rgba(191, 255, 0, .2);
+      background: rgba(5, 5, 5, .82);
+    }
+
+    .brand-mark {
+      border-color: rgba(0, 255, 65, .5);
+      color: var(--gold);
+      background: rgba(0, 255, 65, .08);
+      box-shadow: 0 0 19px rgba(0, 255, 65, .12);
+    }
+
+    .header-note,
+    .eyebrow,
+    .section-kicker,
+    .meta-chip,
+    .toc h2,
+    .step-number,
+    .tip-icon {
+      font-family: var(--font-code);
+    }
+
+    .hero::after {
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 65, .45), transparent);
+    }
+
+    h1 {
+      background: linear-gradient(108deg, #bfff00 10%, #00ff41 92%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      text-shadow: 0 0 28px rgba(0, 255, 65, .12);
+    }
+
+    .eyebrow,
+    .section-kicker { color: var(--gold); }
+
+    .meta-chip {
+      border-color: rgba(191, 255, 0, .2);
+      color: #c9d2be;
+      background: rgba(16, 16, 16, .86);
+    }
+
+    .meta-chip strong { color: var(--gold); }
+
+    .button {
+      border-color: var(--bitcoin);
+      color: #050505;
+      background: linear-gradient(115deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 5px 20px rgba(0, 255, 65, .13);
+    }
+
+    .button:hover {
+      filter: brightness(1.14);
+      box-shadow: 0 0 26px rgba(0, 255, 65, .34);
+    }
+
+    .button-secondary {
+      border-color: rgba(191, 255, 0, .38);
+      color: var(--gold);
+      background: rgba(191, 255, 0, .055);
+      box-shadow: none;
+    }
+
+    .button-secondary:hover {
+      color: #050505;
+      background: linear-gradient(115deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 0 24px rgba(0, 255, 65, .3);
+    }
+
+    .toc,
+    .guide-card {
+      border-color: rgba(191, 255, 0, .22);
+      background: linear-gradient(145deg, rgba(17, 17, 17, .97), rgba(13, 13, 13, .98));
+      box-shadow:
+        0 18px 55px rgba(0, 0, 0, .28),
+        0 0 26px rgba(0, 255, 65, .045),
+        0 1px 0 rgba(191, 255, 0, .055) inset;
+    }
+
+    .guide-card::before {
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 65, .58), transparent);
+    }
+
+    .toc h2,
+    .guide-card h2,
+    .toc a:hover { color: var(--gold); }
+
+    .guide-card h2,
+    .step-copy h3,
+    .tip-item h3,
+    .faq-item summary { color: #f0f0f0; }
+
+    .toc a:hover { background: rgba(191, 255, 0, .055); }
+
+    .highlight-box {
+      border-color: rgba(0, 255, 65, .3);
+      border-left-color: var(--bitcoin);
+      color: #d8e2d0;
+      background: rgba(0, 255, 65, .045);
+    }
+
+    .highlight-box strong,
+    .note-box strong { color: var(--gold); }
+
+    .note-box {
+      border-color: rgba(191, 255, 0, .19);
+      color: #c4cbbd;
+      background: rgba(191, 255, 0, .025);
+    }
+
+    .step-item,
+    .tip-item {
+      border-color: rgba(191, 255, 0, .15);
+      background: rgba(191, 255, 0, .018);
+    }
+
+    .step-number,
+    .tip-icon {
+      border-color: rgba(0, 255, 65, .48);
+      color: #050505;
+      background: linear-gradient(135deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 0 15px rgba(0, 255, 65, .13);
+    }
+
+    .table-wrap { border-color: rgba(191, 255, 0, .2); }
+
+    .comparison-table {
+      background: rgba(5, 5, 5, .52);
+    }
+
+    .comparison-table th {
+      color: var(--gold);
+      background: rgba(191, 255, 0, .055);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border-bottom-color: rgba(191, 255, 0, .13);
+    }
+
+    .comparison-table td:first-child { color: #ecf2e7; }
+
+    .faq-item {
+      border-color: rgba(191, 255, 0, .18);
+      background: rgba(191, 255, 0, .015);
+    }
+
+    .faq-item[open] {
+      border-color: rgba(0, 255, 65, .48);
+      background: rgba(0, 255, 65, .035);
+      box-shadow: 0 0 20px rgba(0, 255, 65, .055);
+    }
+
+    .faq-item[open] summary,
+    .faq-item summary::after { color: var(--gold); }
+
+    .sources a {
+      color: var(--gold);
+      text-decoration-color: rgba(191, 255, 0, .42);
+    }
+
+    .disclaimer { border-top-color: rgba(191, 255, 0, .18); }
+
+    .site-footer {
+      border-top-color: rgba(191, 255, 0, .2);
+      background: rgba(16, 16, 16, .78);
+    }
+
+    .site-footer strong { color: var(--gold); }
+
+    .reading-progress-track { background: rgba(255, 255, 255, .07); }
+
+    .reading-progress-bar {
+      background: linear-gradient(90deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 0 12px rgba(191, 255, 0, .72), 0 0 24px rgba(0, 255, 65, .34);
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline-color: var(--gold);
+      box-shadow: 0 0 16px rgba(0, 255, 65, .25);
+    }
+
+    @media print {
+      body { background: #fff; }
+      h1 { color: #287000; text-shadow: none; }
+    }
+
+    :root {
+      color-scheme: light;
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-raised: #f2f2f2;
+      --surface-hover: #f2f2f2;
+      --gold: #111111;
+      --bitcoin: #ff2d2d;
+      --text: #111111;
+      --muted: #888888;
+      --soft: #888888;
+      --line: #111111;
+      --line-strong: #111111;
+      --green: #111111;
+      --red: #ff2d2d;
+      --reading-progress: 0%;
+    }
+
+    body {
+      color: #111111;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-header {
+      border-bottom: 2px solid #111111;
+      background: #ffffff;
+      backdrop-filter: none;
+    }
+
+    .header-inner,
+    .site-footer-inner { color: #111111; }
+
+    .brand { color: #111111; }
+
+    .brand-mark {
+      border: 2px solid #111111;
+      border-radius: 0;
+      color: #111111;
+      background: #f2f2f2;
+      box-shadow: none;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .brand-name,
+    .header-note { color: #888888; }
+
+    .hero {
+      padding-block: clamp(72px, 11vw, 128px) clamp(58px, 8vw, 92px);
+    }
+
+    .hero::after {
+      background: #cccccc;
+    }
+
+    .eyebrow,
+    .section-kicker {
+      color: #888888;
+      font-family: var(--font-code);
+    }
+
+    .eyebrow::before,
+    .eyebrow::after { background: #111111; }
+
+    h1 {
+      color: #111111;
+      background: none;
+      background-clip: initial;
+      -webkit-background-clip: initial;
+      text-shadow: none;
+      font-size: clamp(2.7rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -.075em;
+      text-transform: none;
+    }
+
+    h1::first-letter { color: #ff2d2d; }
+
+    .hero-copy,
+    .guide-card p,
+    .note-box,
+    .step-copy p,
+    .tip-item p,
+    .faq-answer,
+    .sources,
+    .disclaimer,
+    .site-footer-inner { color: #888888; }
+
+    .hero-meta { gap: 8px; }
+
+    .meta-chip {
+      border: 1px solid #111111;
+      border-radius: 0;
+      color: #111111;
+      background: #ffffff;
+      font-family: var(--font-code);
+    }
+
+    .meta-chip strong { color: #ff2d2d; }
+
+    .button {
+      min-height: 48px;
+      border: 2px solid #111111;
+      border-radius: 0;
+      color: #ffffff;
+      background: #111111;
+      box-shadow: none;
+      font-weight: 800;
+      transition: background-color .15s ease, color .15s ease;
+    }
+
+    .button:hover {
+      transform: none;
+      filter: none;
+      border-color: #111111;
+      color: #111111;
+      background: #ffffff;
+      box-shadow: none;
+    }
+
+    .hero-actions .button:first-child,
+    .button-secondary {
+      border-color: #ff2d2d;
+      color: #ffffff;
+      background: #ff2d2d;
+      box-shadow: none;
+    }
+
+    .hero-actions .button:first-child:hover,
+    .button-secondary:hover {
+      border-color: #111111;
+      color: #ffffff;
+      background: #111111;
+      box-shadow: none;
+    }
+
+    .page-layout { gap: clamp(28px, 5vw, 58px); }
+
+    .toc {
+      border: 2px solid #111111;
+      border-radius: 0;
+      background: #f2f2f2;
+      box-shadow: none;
+    }
+
+    .toc h2 {
+      color: #111111;
+      font-family: var(--font-code);
+    }
+
+    .toc a {
+      border-radius: 0;
+      color: #888888;
+      transition: color .15s ease, background-color .15s ease;
+    }
+
+    .toc a:hover {
+      color: #ff2d2d;
+      background: #ffffff;
+    }
+
+    .article-content { gap: 24px; }
+
+    .guide-card {
+      border: 3px solid #111111;
+      border-radius: 0;
+      background: #ffffff;
+      box-shadow: none;
+    }
+
+    .guide-card:nth-child(even) { background: #f2f2f2; }
+
+    .guide-card::before { display: none; }
+
+    .guide-card h2,
+    .step-copy h3,
+    .tip-item h3,
+    .faq-item summary,
+    .comparison-table td:first-child {
+      color: #111111;
+      font-weight: 800;
+    }
+
+    .highlight-box,
+    .note-box {
+      border: 2px solid #111111;
+      border-left: 2px solid #111111;
+      border-radius: 0;
+      color: #111111;
+      background: #f2f2f2;
+    }
+
+    .highlight-box strong,
+    .note-box strong { color: #ff2d2d; }
+
+    .step-list { gap: 10px; }
+
+    .step-item {
+      grid-template-columns: 42px minmax(0, 1fr);
+      border: 2px solid #111111;
+      border-radius: 0;
+      background: #ffffff;
+    }
+
+    .step-number {
+      border: 2px solid #111111;
+      border-radius: 0;
+      color: #ffffff;
+      background: #111111;
+      box-shadow: none;
+      font-family: var(--font-code);
+    }
+
+    .table-wrap {
+      border: 2px solid #111111;
+      border-radius: 0;
+      scrollbar-color: #888888 #f2f2f2;
+    }
+
+    .comparison-table { background: #ffffff; }
+
+    .comparison-table th,
+    .comparison-table td {
+      border-bottom: 1px solid #cccccc;
+      color: #888888;
+    }
+
+    .comparison-table th {
+      color: #111111;
+      background: #f2f2f2;
+    }
+
+    .comparison-table td:first-child { color: #111111; }
+
+    .tips-grid { gap: 10px; }
+
+    .tip-item {
+      border: 2px solid #111111;
+      border-radius: 0;
+      background: #ffffff;
+    }
+
+    .tip-icon {
+      border: 2px solid #111111;
+      border-radius: 0;
+      color: #ffffff;
+      background: #111111;
+      box-shadow: none;
+      font-family: var(--font-code);
+    }
+
+    .faq-list { gap: 0; }
+
+    .faq-item {
+      border: 2px solid #111111;
+      border-radius: 0;
+      background: #ffffff;
+      transition: background-color .15s ease;
+    }
+
+    .faq-item + .faq-item { border-top: 0; }
+    .faq-item[open] { border-color: #111111; background: #f2f2f2; box-shadow: none; }
+    .faq-item summary { color: #111111; }
+    .faq-item[open] summary,
+    .faq-item[open] summary::after { color: #ff2d2d; }
+    .faq-item summary::after { color: #111111; }
+
+    .faq-answer { color: #888888; }
+    .faq-answer strong { color: #111111; }
+
+    .sources a {
+      color: #ff2d2d;
+      text-decoration-color: #ff2d2d;
+    }
+
+    .disclaimer { border-top: 1px solid #cccccc; }
+
+    .site-footer {
+      border-top: 2px solid #111111;
+      background: #f2f2f2;
+    }
+
+    .site-footer strong { color: #111111; }
+
+    .reading-progress-track { background: #f2f2f2; }
+
+    .reading-progress-bar {
+      background: #ff2d2d;
+      box-shadow: none;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #ff2d2d;
+      outline-offset: 3px;
+      box-shadow: none;
+    }
+
+    @media print {
+      body { color: #111111; background: #ffffff; }
+      h1 { color: #111111; background: none; }
+      h1::first-letter { color: #ff2d2d; }
+    }
+
+    :root {
+      color-scheme: dark;
+      --bg: #0d0217;
+      --surface: #1b0b2e;
+      --surface-raised: #24113b;
+      --surface-hover: #301650;
+      --gold: #00f5d4;
+      --bitcoin: #00e5ff;
+      --text: #f5f5f5;
+      --muted: #c0b6d0;
+      --soft: #d7cde5;
+      --line: rgba(0, 245, 212, .25);
+      --line-strong: rgba(0, 229, 255, .48);
+      --green: #00f5d4;
+      --red: #ff8585;
+      --reading-progress: 0%;
+    }
+
+    body {
+      position: relative;
+      isolation: isolate;
+      color: var(--text);
+      background: #0d0217;
+      font-family: var(--font-body);
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse 75vw 58vh at 50% 0%,
+        rgba(0, 245, 212, .12) 0%,
+        rgba(0, 245, 212, .045) 42%,
+        rgba(13, 2, 23, 0) 100%
+      );
+      content: "";
+    }
+
+    .site-header {
+      border-bottom: 1px solid rgba(0, 245, 212, .25);
+      background: rgba(13, 2, 23, .72);
+    }
+
+    .brand-mark {
+      border: 1px solid rgba(0, 245, 212, .55);
+      border-radius: 12px;
+      color: var(--gold);
+      background: rgba(0, 245, 212, .08);
+      box-shadow: 0 0 18px rgba(0, 245, 212, .12);
+      font-family: var(--font-code);
+    }
+
+    .brand,
+    .guide-card h2,
+    .step-copy h3,
+    .tip-item h3,
+    .faq-item summary,
+    .comparison-table td:first-child {
+      color: var(--text);
+    }
+
+    .brand-name,
+    .header-note,
+    .hero-copy,
+    .guide-card p,
+    .step-copy p,
+    .tip-item p,
+    .faq-answer,
+    .sources,
+    .disclaimer,
+    .site-footer-inner { color: var(--muted); }
+
+    .hero::after {
+      background: linear-gradient(90deg, transparent, #a855f7 35%, #00f5d4 70%, transparent);
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .toc h2 { color: var(--gold); }
+
+    h1 {
+      color: #f5f5f5;
+      background: none;
+      text-shadow: none;
+      animation: none;
+    }
+
+    h1::first-letter {
+      background: none;
+      -webkit-text-fill-color: currentColor;
+    }
+
+    .title-accent {
+      display: inline;
+      color: transparent;
+      background: linear-gradient(90deg, #a855f7, #00f5d4, #a855f7);
+      background-size: 200% 100%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 8px rgba(0, 245, 212, .24));
+      animation: title-word-gradient 4.5s ease-in-out infinite;
+    }
+
+    @keyframes title-word-gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .meta-chip {
+      border-color: rgba(0, 245, 212, .25);
+      border-radius: 999px;
+      color: #d6cce2;
+      background: rgba(27, 11, 46, .74);
+    }
+
+    .meta-chip strong { color: var(--gold); }
+
+    .button {
+      border: 1px solid var(--bitcoin);
+      border-radius: 9px;
+      color: #071016;
+      background: linear-gradient(115deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 0 14px rgba(0, 245, 212, .19);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+      border-color: #9ffff3;
+      color: #050b10;
+      background: linear-gradient(115deg, #70ffe9, #67f0ff);
+      box-shadow: 0 0 24px rgba(0, 245, 212, .42);
+    }
+
+    .button-secondary {
+      border-color: rgba(0, 245, 212, .55);
+      color: var(--gold);
+      background: rgba(0, 245, 212, .07);
+      box-shadow: none;
+    }
+
+    .button-secondary:hover {
+      color: #071016;
+      background: linear-gradient(115deg, var(--gold), var(--bitcoin));
+    }
+
+    .toc,
+    .guide-card {
+      border: 1px solid rgba(0, 245, 212, .25);
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(27, 11, 46, .94), rgba(20, 7, 34, .96));
+      box-shadow:
+        0 18px 55px rgba(0, 0, 0, .28),
+        0 0 24px rgba(0, 245, 212, .055),
+        0 1px 0 rgba(0, 245, 212, .06) inset;
+    }
+
+    .guide-card::before {
+      display: block;
+      background: linear-gradient(90deg, transparent, #a855f7 28%, #00f5d4 72%, transparent);
+    }
+
+    .toc a {
+      border-radius: 7px;
+      color: var(--muted);
+    }
+
+    .toc a:hover {
+      color: var(--gold);
+      background: rgba(0, 245, 212, .08);
+    }
+
+    .highlight-box {
+      border: 1px solid rgba(0, 245, 212, .32);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      color: #e3dcf0;
+      background: rgba(0, 245, 212, .055);
+    }
+
+    .highlight-box strong,
+    .note-box strong { color: var(--gold); }
+
+    .note-box {
+      border: 1px solid rgba(168, 85, 247, .32);
+      border-radius: 10px;
+      color: var(--muted);
+      background: rgba(168, 85, 247, .07);
+    }
+
+    .step-item,
+    .tip-item {
+      border: 1px solid rgba(0, 245, 212, .18);
+      border-radius: 10px;
+      background: rgba(0, 245, 212, .025);
+    }
+
+    .step-number,
+    .tip-icon {
+      border: 1px solid rgba(0, 245, 212, .55);
+      border-radius: 10px;
+      color: #071016;
+      background: linear-gradient(135deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 0 14px rgba(0, 245, 212, .18);
+      font-family: var(--font-code);
+    }
+
+    .table-wrap { border-color: rgba(0, 245, 212, .24); }
+
+    .comparison-table {
+      background: rgba(13, 2, 23, .5);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border-bottom-color: rgba(0, 245, 212, .16);
+    }
+
+    .comparison-table th {
+      color: var(--gold);
+      background: rgba(0, 245, 212, .065);
+    }
+
+    .comparison-table td { color: var(--muted); }
+    .comparison-table td:first-child { color: var(--text); }
+
+    .faq-list { gap: 10px; }
+
+    .faq-item {
+      border: 1px solid rgba(0, 245, 212, .24);
+      border-radius: 10px;
+      background: rgba(0, 245, 212, .025);
+      transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .faq-item + .faq-item { border-top: 1px solid rgba(0, 245, 212, .24); }
+
+    .faq-item[open] {
+      border-color: rgba(0, 245, 212, .58);
+      background: rgba(0, 245, 212, .06);
+      box-shadow: 0 0 18px rgba(0, 245, 212, .08);
+    }
+
+    .faq-item summary { color: var(--text); }
+
+    .faq-item[open] summary,
+    .faq-item[open] summary::after { color: var(--gold); }
+
+    .faq-item summary::after { color: var(--bitcoin); }
+    .faq-answer { color: var(--muted); }
+    .faq-answer strong { color: var(--text); }
+
+    .sources a {
+      color: var(--gold);
+      text-decoration-color: rgba(0, 245, 212, .5);
+    }
+
+    .disclaimer { border-top-color: rgba(0, 245, 212, .22); }
+
+    .site-footer {
+      border-top: 1px solid rgba(0, 245, 212, .28);
+      background: rgba(13, 2, 23, .78);
+    }
+
+    .site-footer strong { color: var(--gold); }
+
+    .site-footer-inner::after {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 1px solid rgba(0, 245, 212, .48);
+      border-radius: 999px;
+      color: var(--gold);
+      background: rgba(0, 245, 212, .055);
+      box-shadow: 0 0 16px rgba(0, 245, 212, .15);
+      content: "Hecho con 🐒 Cripto Chango";
+      font-family: var(--font-code);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      text-shadow: 0 0 9px rgba(0, 245, 212, .45);
+    }
+
+    .reading-progress-track { background: rgba(168, 85, 247, .18); }
+
+    .reading-progress-bar {
+      background: linear-gradient(90deg, var(--gold), var(--bitcoin));
+      box-shadow: 0 0 12px rgba(0, 245, 212, .72), 0 0 24px rgba(0, 229, 255, .32);
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline-color: var(--gold);
+      box-shadow: 0 0 14px rgba(0, 245, 212, .3);
+    }
+
+    @media (max-width: 600px) {
+      .site-footer-inner::after { align-self: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      h1,
+      .title-accent { animation: none; }
+    }
+
+    @media print {
+      :root { color-scheme: light; }
+      body { color: #111; background: #fff; }
+      body::before { display: none; }
+      h1 { color: #111; background: none; text-shadow: none; animation: none; }
+      h1::first-letter { color: #111; -webkit-text-fill-color: #111; }
+      .title-accent {
+        color: #111;
+        background: none;
+        filter: none;
+        animation: none;
+        -webkit-text-fill-color: #111;
+      }
+      .site-footer-inner::after { color: #111; background: #fff; box-shadow: none; text-shadow: none; }
+    }
+
+    #custodial,
+    #comparacion,
+    #preguntas {
+      border-color: rgba(0, 245, 212, .4);
+      background:
+        radial-gradient(ellipse at 100% 0, rgba(0, 229, 255, .09), transparent 42%),
+        linear-gradient(145deg, rgba(35, 13, 57, .97), rgba(17, 7, 31, .98));
+      box-shadow:
+        0 18px 55px rgba(0, 0, 0, .3),
+        0 0 28px rgba(0, 245, 212, .08),
+        0 1px 0 rgba(0, 245, 212, .12) inset;
+    }
+
+    #custodial::before,
+    #comparacion::before,
+    #preguntas::before {
+      right: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #a855f7, #00e5ff 55%, #00f5d4);
+    }
+
+    #custodial .section-kicker,
+    #comparacion .section-kicker,
+    #preguntas .section-kicker {
+      padding-bottom: 7px;
+      border-bottom: 1px solid rgba(0, 245, 212, .42);
+      color: #00f5d4;
+    }
+
+    #custodial h2,
+    #comparacion h2,
+    #preguntas h2 {
+      color: transparent;
+      background: linear-gradient(100deg, #f5f5f5 5%, #00e5ff 72%, #00f5d4);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    #custodial .note-box,
+    #comparacion .note-box {
+      border-color: rgba(0, 229, 255, .3);
+      border-left: 3px solid #00e5ff;
+      background: linear-gradient(100deg, rgba(168, 85, 247, .1), rgba(0, 245, 212, .055));
+    }
+
+    #comparacion .table-wrap {
+      border-color: rgba(0, 245, 212, .4);
+      box-shadow: 0 0 20px rgba(0, 245, 212, .045);
+    }
+
+    #comparacion .comparison-table th {
+      background: linear-gradient(100deg, rgba(168, 85, 247, .2), rgba(0, 245, 212, .1));
+    }
+
+    #comparacion .comparison-table tbody tr {
+      transition: background-color .18s ease;
+    }
+
+    #comparacion .comparison-table tbody tr:hover {
+      background: rgba(0, 245, 212, .055);
+    }
+
+    #preguntas .faq-item {
+      border-color: rgba(0, 245, 212, .3);
+      background: rgba(13, 2, 23, .42);
+    }
+
+    #preguntas .faq-item[open] {
+      border-color: #00f5d4;
+      background: linear-gradient(110deg, rgba(168, 85, 247, .12), rgba(0, 245, 212, .075));
+      box-shadow: 0 0 20px rgba(0, 245, 212, .09);
+    }
+
+    #preguntas .faq-item[open] summary,
+    #preguntas .faq-item[open] summary::after {
+      color: #00f5d4;
+    }
+
+    #preguntas .faq-answer {
+      margin: 0 16px 16px;
+      padding: 12px 14px;
+      border-left: 2px solid rgba(0, 229, 255, .65);
+      background: rgba(168, 85, 247, .06);
+    }
+
+    @media (max-width: 600px) {
+      #preguntas .faq-answer { margin-inline: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress-track">
+    <div
+      class="reading-progress-bar"
+      id="reading-progress"
+      role="progressbar"
+      aria-label="Progreso de lectura"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    ></div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#inicio" aria-label="Guía de Fabio para invertir desde joven, inicio">
+        <span class="brand-mark" aria-hidden="true">F.</span>
+        <span>Fabio</span>
+        <span class="brand-name">// aprende e invierte</span>
+      </a>
+      <span class="header-note">Una guía para aprender<br>con calma y en familia</span>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">Educación financiera para jóvenes</p>
+      <h1 id="page-title"><span class="title-accent">Guía de Fabio para invertir desde joven</span></h1>
+      <p class="hero-copy">Cuál es la edad mínima para invertir y cómo empezar con un adulto.</p>
+      <div class="hero-actions">
+        <a class="button" href="#edad">Explorar la guía <span aria-hidden="true">↓</span></a>
+        <button class="button button-secondary" id="share-whatsapp" type="button">
+          <span aria-hidden="true">↗</span> Compartir por WhatsApp
+        </button>
+      </div>
+      <div class="hero-meta" aria-label="Información de la guía">
+        <span class="meta-chip"><strong>6</strong> temas</span>
+        <span class="meta-chip">Lectura: <strong>5 min</strong></span>
+        <span class="meta-chip">Aprender antes de invertir</span>
+      </div>
+    </section>
+
+    <div class="page-layout">
+      <article class="article-content" aria-label="Guía educativa para invertir siendo menor">
+        <section class="guide-card reveal" id="edad" aria-labelledby="edad-title">
+          <span class="section-kicker">01 · La edad</span>
+          <h2 id="edad-title">¿Cuál es la edad mínima para invertir?</h2>
+          <p>
+            No existe una sola regla para todos los países. En muchos lugares, para abrir una
+            cuenta de inversión individual a tu nombre normalmente tienes que ser mayor de edad:
+            <strong>por lo general, 18 años</strong>. El broker y las leyes locales pueden tener
+            otros requisitos.
+          </p>
+          <p>
+            Si todavía eres menor, eso no significa que no puedas aprender ni participar. En
+            algunos países un padre, madre o tutor puede abrir una cuenta para menores y manejarla
+            hasta que llegue la edad de traspaso. La disponibilidad, el nombre legal y las reglas
+            dependen del país y de la institución financiera.
+          </p>
+          <div class="highlight-box">
+            <strong>La idea clave:</strong> puedes estudiar inversiones desde joven, pero cualquier
+            cuenta real debe abrirse y administrarse de acuerdo con las leyes de tu país y con un
+            adulto responsable.
+          </div>
+          <div class="note-box">
+            <strong>Si estás en República Dominicana:</strong> consulta directamente con una
+            entidad financiera o puesto de bolsa regulado sobre sus requisitos para menores,
+            representante legal, documentos e inversiones disponibles. Una cuenta custodial
+            estadounidense no necesariamente existe con las mismas reglas en otros países.
+          </div>
+        </section>
+
+        <section class="guide-card reveal" id="custodial" aria-labelledby="custodial-title">
+          <span class="section-kicker">02 · La cuenta</span>
+          <h2 id="custodial-title">¿Qué es una cuenta custodial?</h2>
+          <p>
+            En Estados Unidos, una cuenta <em>custodial</em> (de custodia para un menor) suele ser
+            una cuenta de inversión abierta por un adulto custodio bajo reglas como UGMA o UTMA.
+            El adulto elige y administra las operaciones mientras el joven es menor, pero los
+            activos se consideran propiedad del menor según las reglas aplicables.
+          </p>
+          <p>
+            El adulto tiene la responsabilidad de actuar por el beneficio del menor y llevar el
+            control de la cuenta. Cuando se alcanza la edad de transferencia establecida por la
+            ley estatal y el tipo de cuenta, el joven toma el control. <strong>La edad puede ser
+            18 o 21 años, entre otras posibilidades según la jurisdicción</strong>; no se debe
+            asumir una edad sin revisar los documentos y las reglas vigentes.
+          </p>
+          <div class="note-box">
+            <strong>Importante:</strong> “custodial” es un término legal específico, común en
+            Estados Unidos. En otros países puede haber alternativas distintas o ninguna cuenta
+            equivalente. Pregunta por escrito quién es dueño del dinero, quién puede retirarlo,
+            qué impuestos aplican y cuándo cambia el control.
+          </div>
+        </section>
+
+        <section class="guide-card reveal" id="pasos" aria-labelledby="pasos-title">
+          <span class="section-kicker">03 · El proceso</span>
+          <h2 id="pasos-title">¿Cómo funciona paso a paso?</h2>
+          <p>
+            Si la ley local y la entidad ofrecen una forma de invertir para un menor, este puede
+            ser un buen proceso para aprender en equipo:
+          </p>
+          <ol class="step-list">
+            <li class="step-item">
+              <span class="step-number" aria-hidden="true">01</span>
+              <div class="step-copy">
+                <h3>El adulto abre la cuenta adecuada</h3>
+                <p>Padre, madre o tutor confirma los requisitos, lee los costos y completa la solicitud como responsable.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-number" aria-hidden="true">02</span>
+              <div class="step-copy">
+                <h3>Juntos eligen qué investigar</h3>
+                <p>Pueden estudiar acciones de empresas o ETF. Un ETF agrupa varias inversiones, pero también puede perder valor y no garantiza ganancias.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-number" aria-hidden="true">03</span>
+              <div class="step-copy">
+                <h3>El menor aprende y presenta su propuesta</h3>
+                <p>Investiga qué hace la empresa o el fondo, cuáles son sus riesgos, sus costos y por qué piensa que encaja con el objetivo.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-number" aria-hidden="true">04</span>
+              <div class="step-copy">
+                <h3>El adulto revisa y ejecuta</h3>
+                <p>El adulto responsable comprueba que la decisión cumple las reglas de la cuenta y, si está de acuerdo, realiza la operación.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-number" aria-hidden="true">05</span>
+              <div class="step-copy">
+                <h3>Al llegar la edad establecida, cambia el control</h3>
+                <p>Se completa el proceso formal para que el joven asuma la cuenta cuando corresponda según la ley, el contrato y el proveedor.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-card reveal" id="comparacion" aria-labelledby="comparacion-title">
+          <span class="section-kicker">04 · Comparar opciones</span>
+          <h2 id="comparacion-title">Custodial, cuenta del adulto o esperar</h2>
+          <p>
+            No todas las opciones funcionan igual. Esta tabla es una orientación para conversar
+            con un adulto y hacer preguntas; no reemplaza las reglas locales ni el contrato de un
+            proveedor.
+          </p>
+          <div class="table-wrap" role="region" aria-label="Tabla comparativa con desplazamiento horizontal" tabindex="0">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th scope="col">Opción</th>
+                  <th scope="col">¿De quién es el dinero?</th>
+                  <th scope="col">¿Quién decide?</th>
+                  <th scope="col">Qué tener en cuenta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cuenta custodial</td>
+                  <td>En ciertos modelos legales, los activos se destinan al menor y son suyos.</td>
+                  <td>El adulto custodio la administra hasta el traspaso legal.</td>
+                  <td>Puede ser irrevocable; el control se transfiere a la edad fijada por ley. No está disponible en todas partes.</td>
+                </tr>
+                <tr>
+                  <td>Cuenta a nombre del adulto</td>
+                  <td>Normalmente pertenece al adulto titular, aunque tenga la intención de ahorrar para el joven.</td>
+                  <td>El adulto titular.</td>
+                  <td>No se convierte automáticamente en propiedad del menor al cumplir 18. Hay que revisar impuestos y cómo se haría una transferencia o regalo.</td>
+                </tr>
+                <tr>
+                  <td>Esperar a la mayoría de edad</td>
+                  <td>El dinero permanece bajo el control actual de quien lo guarda.</td>
+                  <td>Cuando cumple los requisitos, el joven puede abrir su propia cuenta.</td>
+                  <td>Mientras espera puede aprender, practicar con simuladores y ahorrar; no participa en el mercado con una cuenta propia.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box">
+            Antes de mover dinero, pregunten quién es el titular legal y beneficiario, si se puede
+            retirar o cambiar el destino de los fondos, qué impuestos podrían aplicar y cuáles son
+            las comisiones.
+          </div>
+        </section>
+
+        <section class="guide-card reveal" id="consejos" aria-labelledby="consejos-title">
+          <span class="section-kicker">05 · Consejos de oro</span>
+          <h2 id="consejos-title">Aprende primero; invierte con un plan</h2>
+          <p>
+            Invertir puede ayudar a perseguir objetivos de largo plazo, pero el valor puede subir
+            y bajar. Estos principios sirven para empezar una conversación responsable:
+          </p>
+          <ul class="tips-grid">
+            <li class="tip-item">
+              <span class="tip-icon" aria-hidden="true">01</span>
+              <h3>Empieza con poco</h3>
+              <p>Una cantidad pequeña permite aprender cómo funcionan las operaciones sin poner en juego un objetivo importante.</p>
+            </li>
+            <li class="tip-item">
+              <span class="tip-icon" aria-hidden="true">02</span>
+              <h3>Investiga la diversificación</h3>
+              <p>Un ETF amplio puede reunir muchos activos, aunque tiene riesgos, costos y no asegura que no pierdas dinero.</p>
+            </li>
+            <li class="tip-item">
+              <span class="tip-icon" aria-hidden="true">03</span>
+              <h3>Piensa a largo plazo</h3>
+              <p>Define para qué ahorras y cuándo podrías necesitar el dinero. Evita decidir por miedo o por emoción del momento.</p>
+            </li>
+            <li class="tip-item">
+              <span class="tip-icon" aria-hidden="true">04</span>
+              <h3>No arriesgues lo que necesitas</h3>
+              <p>Nunca inviertas dinero necesario para comida, estudios, vivienda, emergencias o compromisos cercanos.</p>
+            </li>
+          </ul>
+          <div class="highlight-box">
+            <strong>Regla sencilla:</strong> entiende en qué estás invirtiendo, qué podría salir mal
+            y cuánto podrías perder antes de poner dinero real.
+          </div>
+        </section>
+
+        <section class="guide-card reveal" id="preguntas" aria-labelledby="preguntas-title">
+          <span class="section-kicker">06 · Respuestas rápidas</span>
+          <h2 id="preguntas-title">Preguntas frecuentes</h2>
+          <p>Abre cada pregunta para ver una respuesta breve.</p>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>¿Un menor puede comprar acciones solo?</summary>
+              <div class="faq-answer">
+                <p>
+                  Por lo general, un menor no puede abrir y operar por su cuenta una cuenta de
+                  corretaje estándar. Puede haber cuentas especiales para menores donde un adulto
+                  es el custodio y realiza las operaciones. Confirmen la ley y las reglas del
+                  proveedor en su país.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Qué pasa cuando cumplo 18?</summary>
+              <div class="faq-answer">
+                <p>
+                  Depende del tipo de cuenta y de la jurisdicción. En algunas cuentas el control se
+                  transfiere a los 18; en otras puede ser a los 21 o a otra edad establecida.
+                  Cumplir 18 no cambia automáticamente todas las cuentas: revisa el contrato y
+                  contacta al custodio o a la entidad.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Cuánto dinero necesito para empezar?</summary>
+              <div class="faq-answer">
+                <p>
+                  No hay una cifra universal. El mínimo depende de la cuenta, el intermediario y
+                  la inversión; algunos permiten empezar con cantidades bajas y otros cobran
+                  mínimos o comisiones. Puedes comenzar aprendiendo con un simulador gratuito sin
+                  arriesgar dinero.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Es seguro invertir?</summary>
+              <div class="faq-answer">
+                <p>
+                  Toda inversión tiene riesgos y podrías perder parte o todo el dinero invertido.
+                  Usar una entidad regulada y entender las comisiones ayuda a tomar decisiones
+                  informadas, pero no elimina el riesgo ni garantiza ganancias.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="guide-card reveal" id="fuentes" aria-labelledby="fuentes-title">
+          <span class="section-kicker">Para seguir aprendiendo</span>
+          <h2 id="fuentes-title">Fuentes y próxima conversación</h2>
+          <p>
+            Las reglas cambian según el lugar y pueden actualizarse. Consulta fuentes oficiales y
+            pregunta a la entidad que abriría la cuenta antes de tomar una decisión.
+          </p>
+          <ul class="sources">
+            <li>
+              En Estados Unidos, consulta la información para inversionistas de
+              <a href="https://www.investor.gov/" target="_blank" rel="noopener noreferrer">Investor.gov</a>
+              y las reglas UGMA/UTMA del estado correspondiente.
+            </li>
+            <li>
+              En República Dominicana, verifica los proveedores y la información pública de la
+              <a href="https://sb.gob.do/" target="_blank" rel="noopener noreferrer">Superintendencia de Bancos</a>
+              y de la
+              <a href="https://simv.gob.do/" target="_blank" rel="noopener noreferrer">Superintendencia del Mercado de Valores</a>.
+            </li>
+            <li>Lee el contrato de cuenta y pide al proveedor que explique titularidad, retiros, costos, impuestos y edad de transferencia.</li>
+          </ul>
+          <p class="disclaimer">
+            Esta guía es educativa y general, no es asesoría legal, tributaria ni de inversión.
+            Fabio no está recomendando comprar una acción, ETF, criptomoneda o producto específico.
+            Habla con tu padre, madre o tutor y con un profesional autorizado en tu jurisdicción.
+          </p>
+        </section>
+      </article>
+
+      <nav class="toc" aria-label="Contenido de la guía">
+        <h2>En esta guía</h2>
+        <ol>
+          <li><a href="#edad">¿Qué edad necesito?</a></li>
+          <li><a href="#custodial">La cuenta custodial</a></li>
+          <li><a href="#pasos">Cómo empezar paso a paso</a></li>
+          <li><a href="#comparacion">Comparar opciones</a></li>
+          <li><a href="#consejos">Consejos de oro</a></li>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+          <li><a href="#fuentes">Fuentes</a></li>
+        </ol>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span><strong>Guía de Fabio</strong> · Aprende con calma y en familia.</span>
+      <span>La educación financiera es un buen primer paso.</span>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+
+    // Actualiza la barra superior según cuánto contenido de la página se ha recorrido.
+    const barraProgreso = document.querySelector("#reading-progress");
+    let solicitudProgresoPendiente = false;
+
+    function actualizarProgresoLectura() {
+      const recorridoDisponible =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const porcentaje = recorridoDisponible > 0
+        ? Math.min(100, Math.max(0, (window.scrollY / recorridoDisponible) * 100))
+        : 0;
+
+      document.documentElement.style.setProperty("--reading-progress", `${porcentaje}%`);
+      barraProgreso.setAttribute("aria-valuenow", String(Math.round(porcentaje)));
+      solicitudProgresoPendiente = false;
+    }
+
+    function programarActualizacionProgreso() {
+      if (solicitudProgresoPendiente) return;
+      solicitudProgresoPendiente = true;
+      window.requestAnimationFrame(actualizarProgresoLectura);
+    }
+
+    window.addEventListener("scroll", programarActualizacionProgreso, { passive: true });
+    window.addEventListener("resize", programarActualizacionProgreso);
+    actualizarProgresoLectura();
+
+    // Revela las tarjetas al entrar en pantalla y deja todo visible si no hay soporte.
+    document.documentElement.classList.add("js-ready");
+    const seccionesRevelables = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observadorSecciones = new IntersectionObserver((entradas, observador) => {
+        for (const entrada of entradas) {
+          if (!entrada.isIntersecting) continue;
+          entrada.target.classList.add("is-visible");
+          observador.unobserve(entrada.target);
+        }
+      }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+
+      seccionesRevelables.forEach((seccion) => observadorSecciones.observe(seccion));
+    } else {
+      seccionesRevelables.forEach((seccion) => seccion.classList.add("is-visible"));
+    }
+
+    // Prepara un enlace de WhatsApp; no comparte la ruta file:// local, que no sería accesible.
+    document.querySelector("#share-whatsapp").addEventListener("click", () => {
+      const texto = [
+        "Guía de Fabio para invertir desde joven",
+        "Cuál es la edad mínima para invertir y cómo empezar con un adulto.",
+        /^https?:$/.test(window.location.protocol) ? window.location.href : ""
+      ].filter(Boolean).join("\n");
+      const urlCompartir = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+      window.open(urlCompartir, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>
