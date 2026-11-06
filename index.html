@@ -1652,9 +1652,23 @@
     @media (max-width: 600px) {
       #preguntas .faq-answer { margin-inline: 12px; }
     }
+
+    .particle-canvas {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    @media print {
+      .particle-canvas { display: none; }
+    }
   </style>
 </head>
 <body>
+  <canvas class="particle-canvas" id="particle-canvas" aria-hidden="true"></canvas>
   <div class="reading-progress-track">
     <div
       class="reading-progress-bar"
@@ -2037,5 +2051,161 @@
       window.open(urlCompartir, "_blank", "noopener,noreferrer");
     });
   </script>
+  <script>
+    (() => {
+      "use strict";
+
+      // Dibuja partículas decorativas ligeras, sin capturar interacciones de la página.
+      const lienzoParticulas = document.querySelector("#particle-canvas");
+      const contextoParticulas = lienzoParticulas?.getContext("2d");
+      const reducirMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (!lienzoParticulas || !contextoParticulas || reducirMovimiento.matches) return;
+
+      const particulas = [];
+      const coloresParticulas = [
+        { color: "0, 245, 212", brillo: "0, 245, 212" },
+        { color: "168, 85, 247", brillo: "168, 85, 247" },
+        { color: "0, 229, 255", brillo: "0, 229, 255" }
+      ];
+      const esMovil = window.matchMedia("(max-width: 600px)");
+      const maximoDpr = 1.5;
+      let anchoLienzo = 0;
+      let altoLienzo = 0;
+      let escalaLienzo = 1;
+      let cuadroAnimacion = 0;
+      let tiempoAnterior = 0;
+      let tiempoHastaBitcoin = 8 + Math.random() * 8;
+
+      function crearParticula(yInicial = Math.random() * altoLienzo, especial = false) {
+        const tono = coloresParticulas[Math.floor(Math.random() * coloresParticulas.length)];
+        return {
+          x: Math.random() * anchoLienzo,
+          y: yInicial,
+          tamano: especial ? 0 : 1 + Math.random() * 2,
+          velocidad: especial ? 0 : 7 + Math.random() * 12,
+          deriva: (Math.random() - 0.5) * 5,
+          opacidad: especial ? 0 : .12 + Math.random() * .22,
+          tono,
+          especial,
+          fase: Math.random() * Math.PI * 2
+        };
+      }
+
+      function ajustarLienzo() {
+        const anchoAnterior = anchoLienzo;
+        const altoAnterior = altoLienzo;
+        anchoLienzo = window.innerWidth;
+        altoLienzo = window.innerHeight;
+        escalaLienzo = Math.min(window.devicePixelRatio || 1, maximoDpr);
+        lienzoParticulas.width = Math.round(anchoLienzo * escalaLienzo);
+        lienzoParticulas.height = Math.round(altoLienzo * escalaLienzo);
+        contextoParticulas.setTransform(escalaLienzo, 0, 0, escalaLienzo, 0, 0);
+
+        if (anchoAnterior === 0 || altoAnterior === 0) return;
+        for (const particula of particulas) {
+          particula.x = (particula.x / anchoAnterior) * anchoLienzo;
+          particula.y = (particula.y / altoAnterior) * altoLienzo;
+        }
+      }
+
+      function ajustarCantidadParticulas() {
+        const cantidadEspeciales = particulas.filter((particula) => particula.especial).length;
+        const cantidadBase = esMovil.matches ? 24 : 52;
+        const cantidadObjetivo = cantidadBase + cantidadEspeciales;
+        while (particulas.length < cantidadObjetivo) {
+          particulas.push(crearParticula());
+        }
+        particulas.length = Math.min(particulas.length, cantidadObjetivo);
+      }
+
+      function dibujarParticula(particula, deltaSegundos) {
+        particula.fase += deltaSegundos * 1.4;
+        const parpadeoSuave = .78 + Math.sin(particula.fase) * .22;
+        const opacidad = particula.opacidad * parpadeoSuave;
+
+        if (particula.especial) {
+          particula.y -= 9 * deltaSegundos;
+          particula.x += Math.sin(particula.fase) * 2 * deltaSegundos;
+          particula.opacidad = Math.min(.38, particula.opacidad + deltaSegundos * .08);
+          contextoParticulas.save();
+          contextoParticulas.globalAlpha = particula.opacidad;
+          contextoParticulas.fillStyle = "#f7931a";
+          contextoParticulas.shadowColor = "rgba(247, 147, 26, .55)";
+          contextoParticulas.shadowBlur = 9;
+          contextoParticulas.font = "14px Georgia, serif";
+          contextoParticulas.fillText("₿", particula.x, particula.y);
+          contextoParticulas.restore();
+          return;
+        }
+
+        particula.y -= particula.velocidad * deltaSegundos;
+        particula.x += particula.deriva * deltaSegundos;
+        contextoParticulas.beginPath();
+        contextoParticulas.fillStyle = `rgba(${particula.tono.color}, ${opacidad})`;
+        contextoParticulas.shadowColor = `rgba(${particula.tono.brillo}, ${opacidad * .7})`;
+        contextoParticulas.shadowBlur = 5;
+        contextoParticulas.arc(particula.x, particula.y, particula.tamano, 0, Math.PI * 2);
+        contextoParticulas.fill();
+      }
+
+      function animarParticulas(marcaTiempo) {
+        if (document.hidden) {
+          cuadroAnimacion = 0;
+          tiempoAnterior = 0;
+          return;
+        }
+
+        const deltaSegundos = tiempoAnterior
+          ? Math.min((marcaTiempo - tiempoAnterior) / 1000, .05)
+          : 0;
+        tiempoAnterior = marcaTiempo;
+        contextoParticulas.clearRect(0, 0, anchoLienzo, altoLienzo);
+
+        for (let indice = particulas.length - 1; indice >= 0; indice -= 1) {
+          const particula = particulas[indice];
+          dibujarParticula(particula, deltaSegundos);
+          if (particula.y < -18) particulas.splice(indice, 1);
+        }
+
+        tiempoHastaBitcoin -= deltaSegundos;
+        if (tiempoHastaBitcoin <= 0) {
+          particulas.push(crearParticula(altoLienzo + 16, true));
+          tiempoHastaBitcoin = 18 + Math.random() * 18;
+        }
+
+        ajustarCantidadParticulas();
+        contextoParticulas.shadowBlur = 0;
+        cuadroAnimacion = window.requestAnimationFrame(animarParticulas);
+      }
+
+      function iniciarAnimacion() {
+        if (!cuadroAnimacion && !document.hidden) {
+          cuadroAnimacion = window.requestAnimationFrame(animarParticulas);
+        }
+      }
+
+      function actualizarVisibilidad() {
+        if (document.hidden) {
+          if (cuadroAnimacion) window.cancelAnimationFrame(cuadroAnimacion);
+          cuadroAnimacion = 0;
+          tiempoAnterior = 0;
+          return;
+        }
+        iniciarAnimacion();
+      }
+
+      ajustarLienzo();
+      ajustarCantidadParticulas();
+      window.addEventListener("resize", () => {
+        ajustarLienzo();
+        ajustarCantidadParticulas();
+      }, { passive: true });
+      esMovil.addEventListener?.("change", ajustarCantidadParticulas);
+      document.addEventListener("visibilitychange", actualizarVisibilidad);
+      iniciarAnimacion();
+    })();
+  </script>
 </body>
 </html>
+
